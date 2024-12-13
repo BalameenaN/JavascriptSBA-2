@@ -90,53 +90,31 @@ function getLearnerData(course, ag, submissions) {
   tmpSubmission =[...new Set(tmpSubmission1)];
   console.log(tmpSubmission);
 
- /* resultobj1["id"] = tmpSubmission[0];
-  resultobj2.id= tmpSubmission[1];
-  result1.splice(0,0,resultobj1,resultobj2);
-  console.log(result1);*/
-
   ////////////////////////////////////////retriving the student corresponding details
- let firstStudent1={} ; let secondStudent1= {};
- let firstStudent2={}; let secondStudent2= {};
+ 
  let firstStudent=[]; let secondStudent= [];
-  submissions.forEach((s,i)=>{
-      if(s.learner_id === tmpSubmission[0]){
-           firstStudent1.id = tmpSubmission[0];
-           firstStudent2.id = tmpSubmission[0];
-          if (s.assignment_id === 1){
-                  firstStudent1.assignment_id = s.assignment_id;
-                  firstStudent1.date = s.submission.submitted_at;
-                  firstStudent1.score = s.submission.score;
-                  console.log(firstStudent1);
-          }//if
-          else if(s.assignment_id === 2){
-              firstStudent2.assignment_id = s.assignment_id;
-              firstStudent2.date = s.submission.submitted_at;
-                  firstStudent2.score = s.submission.score;
-                  console.log(firstStudent2);
-          }//elseif
-      }//iftmp-main
-      else if(s.learner_id === tmpSubmission[1]){
-          secondStudent1.id = tmpSubmission[1];
-           secondStudent2.id = tmpSubmission[1];
-          if (s.assignment_id === 1){
-                  secondStudent1.assignment_id = s.assignment_id;
-                  secondStudent1.date = s.submission.submitted_at;
-                  secondStudent1.score = s.submission.score;
-                  console.log(secondStudent1);
-          }//if
-          else if(s.assignment_id === 2){
-              secondStudent2.assignment_id = s.assignment_id;
-              secondStudent2.date = s.submission.submitted_at;
-                  secondStudent2.score = s.submission.score;
-                  console.log(secondStudent2);
-          }//elseif
-      }//elseif-main
-  }//foreach
-  )//foreach
-  firstStudent.push(firstStudent1,firstStudent2);
+ submissions.forEach((s, i) => {
+
+  if (s.learner_id === 125 && s.assignment_id!==3) {
+    firstStudent.push(
+      {
+        "id": s.learner_id,
+        "assignment_id": s.assignment_id,
+        "date": s.submission.submitted_at,
+        "score": s.submission.score
+      });
+  }
+  else if (s.learner_id === 132) {
+    secondStudent.push({
+      "id": s.learner_id,
+      "assignment_id": s.assignment_id,
+      "date": s.submission.submitted_at,
+      "score": s.submission.score
+    });
+  }
+})//forEach
+  
   console.log(firstStudent);
-  secondStudent.push(secondStudent1,secondStudent2);
   console.log(secondStudent);
 
 ////////////////////////////////////////Retrieving assignment details
@@ -233,7 +211,6 @@ for(let i=0; i<tmpSubmission.length; i++){
 }//for
 let avg=[];
 
- 
 let resultout = [
     {
          id: tmpSubmission[0], 
@@ -249,7 +226,6 @@ let resultout = [
      }
   ];
 
-  
 return resultout;
 
 }//getLearnerData
